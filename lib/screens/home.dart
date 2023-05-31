@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tinkplus_handover_web/screens/guid_list.dart';
 import 'package:tinkplus_handover_web/utils/Typografie.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black.withOpacity(0.9),
       body: SafeArea(
           child: Column(
         children: const [
@@ -54,56 +56,116 @@ class HomeBottomWidget extends StatelessWidget {
         children: [
           Expanded(
               flex: 1,
-              child: Stack(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Colors.purple.shade800,
-                          Colors.blueAccent.shade100,
+              child: GestureDetector(
+                child: Stack(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Colors.purple.shade800,
+                            Colors.blueAccent.shade100,
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      child: LottieBuilder.network(
+                          "https://assets1.lottiefiles.com/packages/lf20_tco2osel.json"),
+                    ),
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 50, left: 50),
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Typografie()
+                                        .labelLarge("업무 가이드라인", Colors.black54),
+                                  ))),
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Typografie()
+                                      .labelLarge("~~~", Colors.black54)),
+                            ),
+                          )
                         ],
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 50),
-                              child: Typografie()
-                                  .labelLarge("업무 가이드라인", Colors.black54),
-                            )),
-                        Expanded(
-                          flex: 2,
-                          child: Typografie().labelLarge("~~~", Colors.black54),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                  ],
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GuidListScreen()));
+                },
               )),
           Expanded(
               flex: 1,
-              child: Container(
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.pinkAccent.shade100,
-                      Colors.purple.shade800,
-                    ],
-                  ),
+              child: GestureDetector(
+                child: Stack(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Colors.pinkAccent.shade100,
+                            Colors.purple.shade800,
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      child: LottieBuilder.network(
+                          "https://assets1.lottiefiles.com/packages/lf20_au4zdsr8.json"),
+                    ),
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 50, left: 50),
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Typografie().labelLarge(
+                                        "신입이 자주하는 질문!", Colors.black54),
+                                  ))),
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Typografie()
+                                      .labelLarge("~~~", Colors.black54)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               )),
         ],
