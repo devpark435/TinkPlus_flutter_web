@@ -29,10 +29,16 @@ class Typografie {
     return Text(
       text,
       style: TextStyle(
-        color: color,
-        fontSize: 80.0,
-        fontWeight: FontWeight.w900,
-      ),
+          color: color,
+          fontSize: 80.0,
+          fontWeight: FontWeight.w900,
+          shadows: <Shadow>[
+            Shadow(
+              offset: Offset(3.0, 5.0),
+              blurRadius: 10.0,
+              color: color!,
+            ),
+          ]),
     );
   }
 
