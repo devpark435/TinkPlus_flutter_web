@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tinkplus_handover_web/screens/home.dart';
 import 'package:tinkplus_handover_web/services/guid_services.dart';
+import 'package:tinkplus_handover_web/utils/Typografie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class GuidListScreen extends StatelessWidget {
-  const GuidListScreen({super.key});
+class QuestionListScreen extends StatelessWidget {
+  const QuestionListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,22 +14,26 @@ class GuidListScreen extends StatelessWidget {
           child: Column(
         children: [
           Expanded(flex: 1, child: HomeTopWidget()),
-          Expanded(flex: 2, child: GuidLineListView())
+          Expanded(flex: 2, child: QuestionListView()),
+          SizedBox(
+            height: 50,
+          )
         ],
       )),
     );
   }
 }
 
-class GuidLineListView extends StatefulWidget {
-  const GuidLineListView({super.key});
+class QuestionListView extends StatefulWidget {
+  const QuestionListView({super.key});
 
   @override
-  State<GuidLineListView> createState() => _GuidLineListViewState();
+  State<QuestionListView> createState() => _QuestionListViewState();
 }
 
-class _GuidLineListViewState extends State<GuidLineListView> {
-  String showContent = "";
+class _QuestionListViewState extends State<QuestionListView> {
+  String showQuestion = "";
+  String showAnswer = "";
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -42,33 +48,91 @@ class _GuidLineListViewState extends State<GuidLineListView> {
               return SizedBox(
                   width: MediaQuery.of(context).size.width * .9,
                   height: MediaQuery.of(context).size.width,
-                  child: ListView.builder(
-                      itemCount: snapshot.data!.guid!.length,
-                      itemBuilder: (context, index) {
-                        var title = snapshot.data!.guid![index].title;
-                        var content = snapshot.data!.guid![index].content;
-                        /**이부분 부터 작업해야함 */
-                        return Card(
-                            child: Column(
-                          children: [
-                            ListTile(
-                              title: Text("$title"),
-                              onTap: () {
-                                setState(() {
-                                  showContent = "$content";
-                                });
-                              },
-                            ),
-                            ListTile(
-                              subtitle: Text(
-                                "$showContent",
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: ListView.builder(
+                                itemCount: snapshot.data!.questionList!.length,
+                                itemBuilder: (context, index) {
+                                  var question = snapshot
+                                      .data!.questionList![index].question;
+                                  var answer = snapshot
+                                      .data!.questionList![index].answer;
+                                  /**이부분 부터 작업해야함 */
+                                  return Card(
+                                      child: Column(
+                                    children: [
+                                      ListTile(
+                                        title: Row(
+                                          children: [
+                                            Typografie().labelMedium(
+                                                "$question", Colors.black),
+                                            const Icon(
+                                              Icons.question_answer_outlined,
+                                              size: 24,
+                                            ),
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          setState(() {
+                                            showQuestion = "$question";
+                                            showAnswer = "$answer";
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ));
+                                }),
+                          )),
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(
+                                      width: 1, color: Colors.black38)),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20.0, top: 10),
+                                        child: Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Row(
+                                              children: [
+                                                Typografie().labelLarge(
+                                                    showQuestion, Colors.black),
+                                                Icon(Icons
+                                                    .question_answer_rounded)
+                                              ],
+                                            )),
+                                      )),
+                                  Expanded(
+                                      flex: 5,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20.0, top: 10, right: 20),
+                                        child: Container(
+                                            alignment: Alignment.topLeft,
+                                            child: Typografie().labelMedium(
+                                                showAnswer, Colors.black)),
+                                      )),
+                                ],
                               ),
-                            )
-                          ],
-                        ));
-                      }));
+                            ),
+                          ))
+                    ],
+                  ));
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else {
