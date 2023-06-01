@@ -46,10 +46,16 @@ class Typografie {
     return Text(
       text,
       style: TextStyle(
-        color: color,
-        fontSize: 31.0,
-        fontWeight: FontWeight.w300,
-      ),
+          color: color,
+          fontSize: 37.0,
+          fontWeight: FontWeight.w900,
+          shadows: <Shadow>[
+            Shadow(
+              offset: Offset(3.0, 5.0),
+              blurRadius: 10.0,
+              color: color!,
+            ),
+          ]),
     );
   }
 
@@ -113,8 +119,8 @@ class Typografie {
       text,
       style: TextStyle(
         color: color,
-        fontSize: 19.0,
-        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+        fontWeight: FontWeight.w600,
       ),
     );
   }
@@ -124,8 +130,8 @@ class Typografie {
       text,
       style: TextStyle(
         color: color,
-        fontSize: 17.0,
-        fontWeight: FontWeight.w100,
+        fontSize: 13.0,
+        fontWeight: FontWeight.w300,
       ),
     );
   }
