@@ -32,14 +32,29 @@ class HomeTopWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: SizedBox(
           width: width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Typografie().headlineLarge("THINK", Colors.blueAccent.shade100),
-              Typografie().headlineLarge(" PLUS ", Colors.purple.shade800),
-              Typografie().headlineLarge("FEEL", Colors.pinkAccent.shade100),
-            ],
-          ),
+          child: width > 700
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Typografie()
+                        .headlineLarge("THINK", Colors.blueAccent.shade100),
+                    Typografie()
+                        .headlineLarge(" PLUS ", Colors.purple.shade800),
+                    Typografie()
+                        .headlineLarge("FEEL", Colors.pinkAccent.shade100),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Typografie()
+                        .headlineMedium("THINK", Colors.blueAccent.shade100),
+                    Typografie()
+                        .headlineMedium(" PLUS ", Colors.purple.shade800),
+                    Typografie()
+                        .headlineMedium("FEEL", Colors.pinkAccent.shade100),
+                  ],
+                ),
         ));
   }
 }
@@ -107,12 +122,12 @@ class HomeBottomWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GuidListScreen()));
-                },
+                // onTap: () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => const GuidListScreen()));
+                // },
               )),
           Expanded(
               flex: 1,
@@ -167,6 +182,12 @@ class HomeBottomWidget extends StatelessWidget {
                     ),
                   ],
                 ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const QuestionListScreen()));
+                },
               )),
         ],
       ),
