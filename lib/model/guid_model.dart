@@ -1,47 +1,47 @@
-class GuidModel {
-  List<Guid>? guid;
+class QuestionModel {
+  List<Question>? questionList;
 
-  GuidModel({this.guid});
+  QuestionModel({this.questionList});
 
-  GuidModel.fromJson(Map<String, dynamic> json) {
-    if (json['guid'] != null) {
-      guid = <Guid>[];
-      json['guid'].forEach((v) {
-        guid!.add(new Guid.fromJson(v));
+  QuestionModel.fromJson(Map<String, dynamic> json) {
+    if (json['questionList'] != null) {
+      questionList = <Question>[];
+      json['questionList'].forEach((v) {
+        questionList!.add(new Question.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.guid != null) {
-      data['guid'] = this.guid!.map((v) => v.toJson()).toList();
+    if (this.questionList != null) {
+      data['question'] = this.questionList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Guid {
-  String? title;
-  String? company;
+class Question {
+  String? question;
+  String? category;
   String? image;
-  String? content;
+  String? answer;
 
-  Guid({this.title, this.company, this.image, this.content});
+  Question({this.question, this.category, this.image, this.answer});
 
-  Guid.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    company = json['company'];
+  Question.fromJson(Map<String, dynamic> json) {
+    question = json['question'];
+    category = json['category'];
     image = json['image'];
-    content = json['content'];
+    answer = json['answer'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['company'] = this.company;
+    data['question'] = this.question;
+    data['category'] = this.category;
     data['image'] = this.image;
-    data['content'] = this.content;
+    data['answer'] = this.answer;
     return data;
   }
 }
