@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:tinkplus_handover_web/model/guid_model.dart';
+import 'package:tinkplus_handover_web/model/question_model.dart';
 
-class GuidService {
+class QuestionService {
   Future<QuestionModel> guidList() async {
     //api 호출을 위한 주소
     //http request의 결과 즉 api 호출의 결과를 받기 위한 변수
